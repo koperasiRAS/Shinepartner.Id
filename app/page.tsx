@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, MapPin, Calendar, Star, Heart, Users, Sparkles, Clock, Camera } from "lucide-react";
+import { Check, MapPin, Calendar, Star, Heart, Users, Sparkles, Clock, Camera, Video, Smartphone, Zap, PartyPopper } from "lucide-react";
 import { faqData, BreadcrumbStructuredData } from "@/components/SeoStructuredData";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
@@ -46,13 +46,7 @@ export default function Home() {
       {/* 1. HERO SECTION */}
       {/* ============================================ */}
       <section className="relative min-h-screen flex items-center justify-center bg-primary overflow-hidden">
-        {/* Wedding decorative accents */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-32 h-32 border border-accent/20 rounded-full" />
-          <div className="absolute bottom-32 right-20 w-48 h-48 border border-accent/10 rounded-full" />
-          <div className="absolute top-1/4 right-1/4 w-4 h-4 bg-accent/30 rounded-full" />
-          <div className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-accent/20 rounded-full" />
-        </div>
+        {/* Clean background gradient — no decorative elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary-dark/60 via-primary/40 to-primary-light/30" />
 
         <div className="container-custom relative z-10 text-center text-white px-4">
@@ -137,6 +131,62 @@ export default function Home() {
       </Section>
 
       {/* ============================================ */}
+      {/* 2B. ECOSYSTEM BRANDS BAR */}
+      {/* ============================================ */}
+      <Section variant="primary" className="py-16">
+        <div className="text-center mb-10">
+          <p className="text-white/40 text-xs uppercase tracking-widest mb-2">
+            Shinepartner Ecosystem
+          </p>
+          <h2 className="text-2xl md:text-3xl font-heading font-bold text-white">
+            Satu Ekosistem, Banyak Kemungkinan
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          {[
+            {
+              name: "ShinePartner.id",
+              desc: "Wedding Services",
+              href: "/",
+              badge: "Utama",
+            },
+            {
+              name: "ShineTalent.co",
+              desc: "Talent & KOL Management",
+              href: "/shinetalent",
+              badge: "Sub-brand",
+            },
+            {
+              name: "FindYourShine.id",
+              desc: "Blind Date Events",
+              href: "/findyourshine",
+              badge: "Sub-brand",
+            },
+            {
+              name: "Travel Guide",
+              desc: "Honeymoon & Destination",
+              href: "/travel-guide",
+              badge: "Sub-brand",
+            },
+          ].map((brand) => (
+            <a
+              key={brand.name}
+              href={brand.href}
+              className="group bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/20 rounded-2xl p-4 text-center transition-all duration-300"
+            >
+              <span className="inline-block text-xs font-medium bg-accent/20 text-accent px-2 py-0.5 rounded-full mb-2">
+                {brand.badge}
+              </span>
+              <h3 className="text-white font-heading font-bold text-sm leading-tight">
+                {brand.name}
+              </h3>
+              <p className="text-white/50 text-xs mt-1">{brand.desc}</p>
+            </a>
+          ))}
+        </div>
+      </Section>
+
+      {/* ============================================ */}
       {/* 3. APA YANG KAMI TAWARKAN */}
       {/* ============================================ */}
       <Section id="services" variant="accent">
@@ -145,17 +195,17 @@ export default function Home() {
         </SectionHeader>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            { name: "Prewedding", desc: "Storytelling Video & Foto" },
-            { name: "Akad & Resepsi", desc: "Cinematic Content" },
-            { name: "Social Media", desc: "Instagram Reels & TikTok" },
-            { name: "Real-time Content", desc: "Untuk Social Media" },
-            { name: "Custom Wedding", desc: "Story untuk Pasangan" },
-            { name: "Event Lainnya", desc: "Engagement, Birthday, Bridal Shower" },
+            { name: "Prewedding", desc: "Storytelling Video & Foto", icon: Video },
+            { name: "Akad & Resepsi", desc: "Cinematic Content", icon: Camera },
+            { name: "Social Media", desc: "Instagram Reels & TikTok", icon: Smartphone },
+            { name: "Real-time Content", desc: "Posting saat event berlangsung", icon: Zap },
+            { name: "Custom Wedding", desc: "Story untuk Pasangan", icon: Sparkles },
+            { name: "Event Lainnya", desc: "Engagement, Birthday, Bridal Shower", icon: PartyPopper },
           ].map((item) => (
             <Card key={item.name} hover className="text-center group">
               <CardContent className="py-8">
-                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-soft group-hover:shadow-card transition-shadow">
-                  <Heart className="w-6 h-6 text-accent" />
+                <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-soft group-hover:shadow-card transition-shadow">
+                  <item.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="font-heading font-bold text-lg text-primary mb-1">{item.name}</h3>
                 <p className="text-gray-500 text-sm">{item.desc}</p>
@@ -323,7 +373,7 @@ export default function Home() {
               </CardContent>
               <div className="p-6 pt-0 mt-auto flex flex-col gap-2">
                 <Button
-                  variant="secondary"
+                  variant="primary"
                   size="lg"
                   className="w-full"
                   onClick={() => handleBook(brideAssist)}
@@ -368,7 +418,7 @@ export default function Home() {
               </CardContent>
               <div className="p-4 pt-0 mt-auto flex flex-col gap-2">
                 <Button
-                  variant="outline"
+                  variant="primary"
                   size="sm"
                   className="w-full"
                   onClick={() => handleBook(addon)}

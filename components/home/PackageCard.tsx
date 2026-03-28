@@ -111,7 +111,7 @@ export function PackageCard({ pkg, onBook }: PackageCardProps) {
 
         <CardFooter className="pt-4 flex-col gap-2">
           <Button
-            variant={pkg.recommended ? "secondary" : "outline"}
+            variant="primary"
             size="lg"
             className="w-full"
             onClick={() => onBook(pkg)}
