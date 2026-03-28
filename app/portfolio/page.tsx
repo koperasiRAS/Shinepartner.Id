@@ -122,10 +122,10 @@ const categories = [
 ];
 
 const stats = [
-  { number: "200+", label: "Event Diabadikan" },
-  { number: "150+", label: "Pasangan Bahagia" },
-  { number: "50M+", label: "Total Views" },
-  { number: "15+", label: "Kota DiCover" },
+  { number: "100+", label: "Event Diabadikan" },
+  { number: "50+", label: "Pasangan Bahagia" },
+  { number: "10M+", label: "Total Views" },
+  { number: "10+", label: "Kota DiCover" },
 ];
 
 type PortfolioItem = (typeof portfolioItems)[0];
