@@ -10,367 +10,347 @@ import {
   SectionSubtitle,
 } from "@/components/ui/Section";
 import { PackagesSection } from "@/components/home/PackagesSection";
-import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { ContactForm } from "@/components/home/ContactForm";
+import { formatCurrency } from "@/lib/utils";
+import { packages, addOnPricing } from "@/lib/data";
 
 export default function Home() {
   const [isContactOpen, setIsContactOpen] = useState(false);
 
+  // Filter packages by category
+  const woPackages = packages.filter(p => p.category === "organizer");
+  const wpPackages = packages.filter(p => p.category === "planner");
+  const brideAssist = packages.find(p => p.category === "bride-assist");
+  const addOns = packages.filter(p => p.category === "add-on");
+
   return (
     <div>
-      {/* Hero Section */}
+      {/* ============================================ */}
+      {/* 1. HERO SECTION */}
+      {/* ============================================ */}
       <section className="relative min-h-screen flex items-center justify-center bg-primary overflow-hidden">
-        {/* Video Background Placeholder */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary-dark/60 via-primary/40 to-primary-light/30" />
 
         <div className="container-custom relative z-10 text-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-heading font-bold mb-6 leading-tight">
-            Your Wedding, <br />
-            <span className="text-accent">Perfectly Managed</span> & Captured
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
+            ShinePartner.id <br />
+            <span className="text-accent">Creative Partner</span> untuk Momen Pernikahanmu
           </h1>
           <p className="text-lg md:text-xl lg:text-2xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Premium wedding services with love and dedication. From planning to
-            execution, we make your special day unforgettable.
+            Kami tidak hanya merekam visual, tapi menceritakan kisah cinta dengan cahaya dan rasa.
+            <br className="hidden md:block" />
+            Dari akad hingga pesta, setiap momen dibuat <span className="text-accent font-semibold">bersinar</span> dan <span className="text-accent font-semibold">abadi</span>.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              variant="secondary"
-              size="lg"
-              onClick={() =>
-                document.getElementById("packages")?.scrollIntoView({ behavior: "smooth" })
-              }
+            <a
+              href="https://wa.me/6282138016904?text=Halo%20Shinepartner!%20Saya%20tertarik%20dengan%20layanan%20wedding%20services.%20Mohon%20info%20lebih%20lanjut."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-8 py-4 bg-accent text-primary font-medium rounded-2xl hover:bg-accent-light transition-all duration-300 shadow-soft hover:shadow-card"
             >
-              Book Now
-            </Button>
+              <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Konsultasi Sekarang
+            </a>
             <Button
               variant="outline"
               size="lg"
               className="border-white text-white hover:bg-white hover:text-primary"
               onClick={() =>
-                document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
+                document.getElementById("packages")?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              Explore Services
+              Lihat Paket
             </Button>
           </div>
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg
-            className="w-6 h-6 text-white/60"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
+          <svg className="w-6 h-6 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
       </section>
 
-      {/* Ecosystem Section */}
-      <Section id="ecosystem">
-        <SectionHeader>
-          <SectionTitle>Our Ecosystem</SectionTitle>
-          <SectionSubtitle>
-            Three brands working together to serve your wedding needs
-          </SectionSubtitle>
-        </SectionHeader>
-        <div className="grid md:grid-cols-3 gap-8">
-          <Card hover className="text-center border-t-4 border-t-accent">
-            <CardHeader>
-              <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">💍</span>
-              </div>
-              <CardTitle>Shinepartner.id</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Wedding services & travel solutions. Complete wedding packages
-                from content creation to honeymoon trips.
-              </p>
-            </CardContent>
-          </Card>
-          <Card hover className="text-center border-t-4 border-t-primary">
-            <CardHeader>
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">❤️</span>
-              </div>
-              <CardTitle>FindYourShine.id</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Blind date events for meaningful connections. Find your perfect
-                match in our exclusive matchmaking events.
-              </p>
-            </CardContent>
-          </Card>
-          <Card hover className="text-center border-t-4 border-t-accent">
-            <CardHeader>
-              <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">⭐</span>
-              </div>
-              <CardTitle>ShineTalent.co</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Talent management & KOL community. Connect with top influencers
-                and content creators for your wedding.
-              </p>
-            </CardContent>
-          </Card>
+      {/* ============================================ */}
+      {/* 2. ABOUT SHINEPARTNER */}
+      {/* ============================================ */}
+      <Section id="about">
+        <div className="max-w-4xl mx-auto text-center">
+          <SectionTitle>About ShinePartner.id</SectionTitle>
+          <p className="text-lg md:text-xl text-gray-600 leading-relaxed mt-8">
+            ShinePartner.id adalah <strong className="text-primary">creative partner</strong> untuk momen pernikahanmu.
+          </p>
+          <p className="text-lg md:text-xl text-gray-600 leading-relaxed mt-4">
+            Kami hadir sebagai wedding content creator yang tidak hanya merekam visual, tapi menceritakan kisah cinta dengan <strong className="text-accent">cahaya</strong> dan <strong className="text-accent">rasa</strong>.
+          </p>
+          <p className="text-lg md:text-xl text-gray-600 leading-relaxed mt-4">
+            Dari detik-detik haru menjelang akad hingga tawa lepas saat pesta —
+            <br />
+            kami percaya setiap momen layak untuk <strong className="text-primary">bersinar</strong> dan <strong className="text-primary">abadi</strong>.
+          </p>
         </div>
       </Section>
 
-      {/* Services Section */}
+      {/* ============================================ */}
+      {/* 3. APA YANG KAMI TAWARKAN */}
+      {/* ============================================ */}
       <Section id="services" variant="accent">
         <SectionHeader>
-          <SectionTitle>Our Services</SectionTitle>
-          <SectionSubtitle>
-            Comprehensive wedding services to make your day perfect
-          </SectionSubtitle>
+          <SectionTitle>Apa Yang Kami Tawarkan</SectionTitle>
         </SectionHeader>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
-            { name: "Wedding Content Creator", icon: "📹", desc: "Capture every moment" },
-            { name: "Wedding Planner", icon: "📋", desc: "Full planning support" },
-            { name: "Wedding Organizer", icon: "🎯", desc: "Day-of coordination" },
-            { name: "Personal Bride Assistant", icon: "👰", desc: "VIP bride care" },
-            { name: "MC Wedding", icon: "🎤", desc: "Professional host" },
-            { name: "Digital Invitation", icon: "💌", desc: "Elegant e-invites" },
-            { name: "Custom Souvenir", icon: "🎁", desc: "Personalized gifts" },
-          ].map((service) => (
-            <Card key={service.name} hover className="text-center group">
+            { name: "Prewedding", desc: "Storytelling Video & Foto", icon: "📸" },
+            { name: "Akad & Resepsi", desc: "Cinematic Content", icon: "💒" },
+            { name: "Social Media", desc: "Instagram Reels & TikTok", icon: "📱" },
+            { name: "Real-time Content", desc: "Untuk Social Media", icon: "⚡" },
+            { name: "Custom Wedding", desc: "Story untuk Pasangan", icon: "💕" },
+            { name: "Event Lainnya", desc: "Engagement, Birthday, Bridal Shower, dll", icon: "🎉" },
+          ].map((item) => (
+            <Card key={item.name} hover className="text-center group">
               <CardContent className="py-8">
-                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-soft group-hover:shadow-card transition-shadow">
-                  <span className="text-4xl">{service.icon}</span>
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-soft group-hover:shadow-card transition-shadow">
+                  <span className="text-3xl">{item.icon}</span>
                 </div>
-                <h3 className="font-heading font-bold text-lg text-primary mb-2">
-                  {service.name}
-                </h3>
-                <p className="text-gray-500 text-sm">{service.desc}</p>
+                <h3 className="font-heading font-bold text-lg text-primary mb-1">{item.name}</h3>
+                <p className="text-gray-500 text-sm">{item.desc}</p>
               </CardContent>
             </Card>
           ))}
         </div>
       </Section>
 
-      {/* Wedding Packages Section */}
+      {/* ============================================ */}
+      {/* 4. CONTENT CREATOR PACKAGES */}
+      {/* ============================================ */}
       <PackagesSection />
 
-      {/* Travel Section */}
-      <Section id="travel">
+      {/* ============================================ */}
+      {/* 5. WEDDING ORGANIZER PACKAGE */}
+      {/* ============================================ */}
+      <Section id="wo-packages" variant="accent">
         <SectionHeader>
-          <SectionTitle>Travel Services</SectionTitle>
-          <SectionSubtitle>
-            Make your wedding journey memorable with our travel services
-          </SectionSubtitle>
+          <SectionTitle>Wedding Organizer Package</SectionTitle>
         </SectionHeader>
-        <div className="grid md:grid-cols-3 gap-8">
-          <Card hover>
-            <div className="aspect-video bg-gradient-to-br from-primary to-primary-light rounded-2xl mb-4 flex items-center justify-center">
-              <span className="text-6xl">✈️</span>
-            </div>
-            <CardHeader>
-              <CardTitle>Honeymoon Trip</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Romantic honeymoon packages to dream destinations. Let us handle
-                every detail of your post-wedding getaway.
-              </p>
-            </CardContent>
-          </Card>
-          <Card hover>
-            <div className="aspect-video bg-gradient-to-br from-accent/80 to-accent rounded-2xl mb-4 flex items-center justify-center">
-              <span className="text-6xl">🏝️</span>
-            </div>
-            <CardHeader>
-              <CardTitle>Destination Wedding</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Exchange vows in breathtaking locations. Beach, mountain, or
-                city - we make your destination wedding seamless.
-              </p>
-            </CardContent>
-          </Card>
-          <Card hover>
-            <div className="aspect-video bg-gradient-to-br from-primary-light to-primary rounded-2xl mb-4 flex items-center justify-center">
-              <span className="text-6xl">🗺️</span>
-            </div>
-            <CardHeader>
-              <CardTitle>Private Tour Guide</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-600">
-                Personal tour guide services for wedding guests. Explore local
-                attractions with professional guidance.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </Section>
-
-      {/* Sub Brand Section */}
-      <Section id="sub-brand" variant="primary">
-        <SectionHeader>
-          <SectionTitle className="text-white">Our Brands</SectionTitle>
-          <SectionSubtitle className="text-white/80">
-            Discover our family of brands serving different needs
-          </SectionSubtitle>
-        </SectionHeader>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 hover:bg-white/15 transition-colors">
-            <div className="flex items-center space-x-4 mb-6">
-              <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center">
-                <span className="text-3xl">💕</span>
-              </div>
-              <div>
-                <h3 className="font-heading font-bold text-2xl text-white">
-                  FindYourShine.id
-                </h3>
-                <p className="text-accent">Blind Date Events</p>
-              </div>
-            </div>
-            <p className="text-white/80 mb-6">
-              Find your perfect match through our exclusive blind date events.
-              We create meaningful connections in a safe, fun environment.
-            </p>
-            <a
-              href="https://findyourshine.id"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-accent hover:text-white transition-colors"
-            >
-              Visit FindYourShine.id
-              <svg
-                className="w-5 h-5 ml-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 hover:bg-white/15 transition-colors">
-            <div className="flex items-center space-x-4 mb-6">
-              <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center">
-                <span className="text-3xl">✨</span>
-              </div>
-              <div>
-                <h3 className="font-heading font-bold text-2xl text-white">
-                  ShineTalent.co
-                </h3>
-                <p className="text-accent">Talent Management</p>
-              </div>
-            </div>
-            <p className="text-white/80 mb-6">
-              Connect with top influencers and content creators for your
-              wedding. Professional talent management for memorable events.
-            </p>
-            <a
-              href="https://shinetalent.co"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-accent hover:text-white transition-colors"
-            >
-              Visit ShineTalent.co
-              <svg
-                className="w-5 h-5 ml-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </Section>
-
-      {/* Testimonials Section */}
-      <TestimonialsSection />
-
-      {/* Portfolio Section */}
-      <Section id="portfolio">
-        <SectionHeader>
-          <SectionTitle>Our Portfolio</SectionTitle>
-          <SectionSubtitle>
-            See our work in action - captured moments from beautiful weddings
-          </SectionSubtitle>
-        </SectionHeader>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {[
-            { name: "Wedding Ceremony", emoji: "💒" },
-            { name: "Pre-Wedding", emoji: "📸" },
-            { name: "Reception", emoji: "🎉" },
-            { name: "Editorial", emoji: "✨" },
-            { name: "Cultural", emoji: "🏛️" },
-            { name: "Modern", emoji: "🌟" },
-            { name: "Intimate", emoji: "💐" },
-            { name: "Luxury", emoji: "👑" },
-          ].map((category) => (
-            <div
-              key={category.name}
-              className="aspect-square bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl flex flex-col items-center justify-center gap-3 hover:from-primary/30 hover:to-accent/30 transition-colors cursor-pointer group"
-            >
-              <span className="text-4xl group-hover:scale-110 transition-transform">
-                {category.emoji}
-              </span>
-              <span className="font-heading font-bold text-primary/60 text-sm group-hover:text-primary transition-colors">
-                {category.name}
-              </span>
-            </div>
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {woPackages.map((pkg) => (
+            <Card key={pkg.id} hover className={`text-center ${pkg.recommended ? "border-2 border-accent" : ""}`}>
+              {pkg.recommended && (
+                <div className="bg-accent text-primary text-sm font-medium px-4 py-1 rounded-b-xl">
+                  Most Popular
+                </div>
+              )}
+              <CardHeader className="text-center">
+                <CardTitle className="text-2xl">{pkg.name}</CardTitle>
+                <p className="text-primary font-bold text-3xl mt-2">
+                  {formatCurrency(pkg.price)}
+                </p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-center mb-6">{pkg.description}</p>
+                <div className="space-y-3">
+                  {pkg.crew && pkg.crew.map((c, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                      <span className="w-2 h-2 bg-accent rounded-full" />
+                      {c}
+                    </div>
+                  ))}
+                  {pkg.features.map((feature, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                      <span className="w-2 h-2 bg-accent rounded-full" />
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
-        <div className="text-center mt-10">
-          <Button variant="outline" size="lg">
-            View All Portfolio
-          </Button>
+      </Section>
+
+      {/* ============================================ */}
+      {/* 6. WEDDING PLANNER PACKAGE */}
+      {/* ============================================ */}
+      <Section id="wp-packages">
+        <SectionHeader>
+          <SectionTitle>Wedding Planner Package</SectionTitle>
+        </SectionHeader>
+        <div className="grid md:grid-cols-3 gap-6">
+          {wpPackages.map((pkg) => (
+            <Card key={pkg.id} hover className={`text-center ${pkg.recommended ? "border-2 border-accent" : ""}`}>
+              {pkg.recommended && (
+                <div className="bg-accent text-primary text-sm font-medium px-4 py-1 rounded-b-xl">
+                  Most Popular
+                </div>
+              )}
+              <CardHeader className="text-center">
+                <CardTitle className="text-xl">{pkg.name}</CardTitle>
+                <p className="text-primary font-bold text-2xl mt-2">
+                  {formatCurrency(pkg.price)}
+                </p>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-sm text-center mb-4">{pkg.description}</p>
+                <div className="space-y-2">
+                  {pkg.features.map((feature, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                      <span className="w-2 h-2 bg-accent rounded-full" />
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </Section>
 
-      {/* FAQ Section */}
+      {/* ============================================ */}
+      {/* 7. PERSONAL BRIDE ASSISTANT */}
+      {/* ============================================ */}
+      {brideAssist && (
+        <Section id="bride-assistant" variant="accent">
+          <SectionHeader>
+            <SectionTitle>Personal Bride Assistant</SectionTitle>
+            <SectionSubtitle>
+              Asisten pribadi untuk menemani brides di hari spesial
+            </SectionSubtitle>
+          </SectionHeader>
+          <div className="max-w-2xl mx-auto">
+            <Card className="text-center border-2 border-accent">
+              <CardHeader className="text-center">
+                <div className="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-4xl">👰</span>
+                </div>
+                <CardTitle className="text-2xl">{brideAssist.name}</CardTitle>
+                <p className="text-primary font-bold text-4xl mt-2">
+                  {formatCurrency(brideAssist.price)}
+                </p>
+                <p className="text-gray-500">{brideAssist.duration} Standby</p>
+              </CardHeader>
+              <CardContent>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {brideAssist.features.map((feature, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-gray-600 text-left">
+                      <span className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </Section>
+      )}
+
+      {/* ============================================ */}
+      {/* 8. ADD-ONS */}
+      {/* ============================================ */}
+      <Section id="addons">
+        <SectionHeader>
+          <SectionTitle>Add-Ons</SectionTitle>
+          <SectionSubtitle>
+            Tingkatkan paketmu dengan layanan tambahan
+          </SectionSubtitle>
+        </SectionHeader>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {addOns.map((addon) => (
+            <Card key={addon.id} className="text-center">
+              <CardContent className="py-6">
+                <h4 className="font-heading font-bold text-primary mb-2">{addon.name}</h4>
+                <p className="text-accent font-bold text-lg">
+                  {addon.price >= 1000000 ? "mulai " : ""}
+                  {formatCurrency(addon.price)}
+                </p>
+                <p className="text-gray-500 text-xs mt-1">{addon.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* ============================================ */}
+      {/* 9. KENAPA SHINEPARTNER.ID */}
+      {/* ============================================ */}
+      <Section id="why-us" variant="accent">
+        <SectionHeader>
+          <SectionTitle>Kenapa ShinePartner.id?</SectionTitle>
+        </SectionHeader>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            { title: "Tim Profesional", desc: "Tim profesional wedding & content creator", icon: "👥" },
+            { title: "Fokus Social Media", desc: "Format Reels / TikTok yang viral", icon: "📱" },
+            { title: "Personal Storytelling", desc: "Tiap pasangan punya cerita unik", icon: "💕" },
+            { title: "Fast Delivery", desc: "Real-time editing & fast delivery", icon: "⚡" },
+            { title: "Hari-H Ready", desc: "Bisa tayang saat hari-H", icon: "🎬" },
+          ].map((item) => (
+            <Card key={item.title} hover className="text-center">
+              <CardContent className="py-6">
+                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl">{item.icon}</span>
+                </div>
+                <h4 className="font-heading font-bold text-primary mb-1">{item.title}</h4>
+                <p className="text-gray-500 text-sm">{item.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* ============================================ */}
+      {/* 10. AREA LAYANAN */}
+      {/* ============================================ */}
+      <Section id="area">
+        <SectionHeader>
+          <SectionTitle>Area Layanan</SectionTitle>
+        </SectionHeader>
+        <div className="text-center">
+          <div className="inline-flex items-center gap-4 bg-primary/5 rounded-2xl px-8 py-6">
+            <span className="text-4xl">📍</span>
+            <div className="text-left">
+              <p className="font-heading font-bold text-primary text-xl">Bandung</p>
+              <p className="text-gray-600">Available seluruh Indonesia</p>
+            </div>
+          </div>
+          <p className="text-gray-500 mt-4">
+            Destination Wedding tersedia untuk seluruh Indonesia
+          </p>
+        </div>
+      </Section>
+
+      {/* ============================================ */}
+      {/* 11. FAQ / TERMS & CONDITIONS */}
+      {/* ============================================ */}
       <Section id="faq" variant="accent">
         <SectionHeader>
-          <SectionTitle>Frequently Asked Questions</SectionTitle>
+          <SectionTitle>Terms & Conditions</SectionTitle>
           <SectionSubtitle>
-            Find answers to common questions about our services
+            Syarat dan ketentuan layanan Shinepartner
           </SectionSubtitle>
         </SectionHeader>
         <div className="max-w-3xl mx-auto space-y-4">
           {[
             {
-              q: "How far in advance should I book your services?",
-              a: "We recommend booking at least 3-6 months in advance, especially for peak wedding seasons. However, we also accommodate last-minute bookings based on availability.",
+              q: "Bagaimana sistem pembayaran?",
+              a: "Pembayaran dimulai dengan DP 50% dari harga paket yang dipilih saat booking. Pelunasan dilakukan H-3 sebelum hari H event.",
             },
             {
-              q: "Do you offer customized packages?",
-              a: "Yes! We understand every wedding is unique. Contact us for a personalized package that fits your needs and budget.",
+              q: "Bagaimana jika klien membatalkan pesanan?",
+              a: "Jika klien membatalkan setelah booking: DP tidak bisa dikembalikan. Pembatalan harus dilakukan minimal H-7 sebelum hari H event.",
             },
             {
-              q: "What areas do you serve?",
-              a: "We primarily serve Jakarta and surrounding areas, but we also handle destination weddings throughout Indonesia and internationally.",
+              q: "Bagaimana jika Shinepartner membatalkan pesanan?",
+              a: "Jika Shinepartner membatalkan pesanan: DP akan 100% dikembalikan kepada klien. Perlu konfirmasi minimal H-3 sebelum hari H event.",
             },
             {
-              q: "How do I book your services?",
-              a: "Simply fill out the booking form on our website or contact us via WhatsApp. We'll get back to you within 24 hours to discuss your requirements.",
+              q: "Apakah biaya sudah termasuk transport?",
+              a: "Harga yang tertera sudah termasuk biaya transport untuk area Bandung/Jabodetabek. Untuk area luar akan ada biaya tambahan.",
+            },
+            {
+              q: "Event apa saja yang bisa menggunakan jasa Shinepartner?",
+              a: "Kami melayani berbagai event seperti: Wedding, Engagement, Siraman, Pengajian, Prewedding, Sangjit, Birthday, Graduation, dan event lainnya.",
             },
           ].map((faq) => (
             <Card key={faq.q} className="overflow-hidden">
@@ -378,18 +358,8 @@ export default function Home() {
                 <summary className="flex items-center justify-between cursor-pointer p-6 font-heading font-bold text-primary list-none">
                   <span>{faq.q}</span>
                   <span className="text-accent group-open:rotate-180 transition-transform">
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </span>
                 </summary>
@@ -400,16 +370,16 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Contact CTA Section */}
+      {/* ============================================ */}
+      {/* 12. CTA FINAL */}
+      {/* ============================================ */}
       <Section id="contact" variant="primary">
         <div className="text-center text-white max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
-            Ready to Start Your Journey?
+            Buat Momen Pernikahanmu
+            <br />
+            <span className="text-accent">Bersinar</span> Bersama ShinePartner.id
           </h2>
-          <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
-            Contact us via WhatsApp for a free consultation and let us help make
-            your wedding dreams come true.
-          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="https://wa.me/6282138016904?text=Halo%20Shinepartner!%20Saya%20tertarik%20dengan%20layanan%20wedding%20services.%20Mohon%20info%20lebih%20lanjut."
@@ -417,24 +387,20 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-4 bg-accent text-primary font-medium rounded-2xl hover:bg-accent-light transition-all duration-300 shadow-soft hover:shadow-card"
             >
-              <svg
-                className="w-6 h-6 mr-2"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
               </svg>
-              Chat on WhatsApp
+              Konsultasi via WhatsApp
             </a>
             <Button
               variant="outline"
               size="lg"
               className="border-white text-white hover:bg-white hover:text-primary"
               onClick={() =>
-                document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })
+                document.getElementById("packages")?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              Explore Services
+              Lihat Ketersediaan Tanggal
             </Button>
           </div>
         </div>
