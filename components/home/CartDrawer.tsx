@@ -25,6 +25,8 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const handleCheckout = () => {
     if (items.length === 0) return;
 
+    const whatsappNumber = "6282138016904";
+
     const itemsList = items
       .map(
         (item, i) =>
@@ -32,11 +34,10 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       )
       .join("%0A");
 
-    const totalMsg = `%0A%0A📦 TOTAL: ${formatCurrency(totalPrice)}`;
-    const footerMsg =
-      "%0A%0AHalo Shinepartner! Saya ingin booking paket di atas. Mohon info lebih lanjut.";
+    const message =
+      `━━━━━━━━━━━━━━━━━━━━━━%0A*BOOKING REQUEST — Shinepartner*%0A_Inquiry dari Client_%0A━━━━━━━━━━━━━━━━━━━━━━%0A%0ASaya ingin booking paket berikut:%0A%0A${itemsList}%0A%0A━━━━━━━━━━━━━━━━━━━━━━%0A📦 TOTAL: ${formatCurrency(totalPrice)}%0A━━━━━━━━━━━━━━━━━━━━━━%0A%0AMohon dapat divalidasi dan diinformasikan lebih lanjut. Terima kasih! 🙏`;
 
-    const whatsappUrl = `https://wa.me/6282138016904?text=${itemsList}${totalMsg}${footerMsg}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
     window.open(whatsappUrl, "_blank");
     onClose();
   };

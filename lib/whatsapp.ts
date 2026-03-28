@@ -39,46 +39,7 @@ export function generateWhatsAppLink(
   return `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
 }
 
-// Base message template
-interface BaseMessageData {
-  clientName: string;
-  service: string;
-  package: string;
-  eventDate: string;
-  location: string;
-  price: number;
-  bookingReference?: string;
-}
-
-function createBaseMessage(data: BaseMessageData): string {
-  return `━━━━━━━━━━━━━━━━━━━━━━
-*${COMPANY_NAME}*
-_${COMPANY_TAGLINE}_
-━━━━━━━━━━━━━━━━━━━━━━
-
-*Halo ${data.clientName}!* 👋
-
-Terima kasih telah memilih ${COMPANY_NAME} untuk momen spesial Anda.
-
-*Detail Pemesanan:*
-━━━━━━━━━━━━━━━━━━━━━━
-📅 Tanggal: ${data.eventDate}
-📍 Lokasi: ${data.location}
-🎁 Paket: ${data.package}
-💰 Estimasi Harga: ${formatCurrency(data.price)}
-${data.bookingReference ? `🔖 Ref: ${data.bookingReference}` : ""}
-━━━━━━━━━━━━━━━━━━━━━━
-
-Kami akan segera menghubungi Anda dalam 1x24 jam untuk konfirmasi dan detail lebih lanjut.
-
-Ada pertanyaan? Jangan ragu untuk menghubungi kami langsung.
-
-Salam hangat,
-*Tim ${COMPANY_NAME}* 💚
-`;
-}
-
-// Booking inquiry message
+// Booking inquiry message — FROM client TO admin
 export function createBookingMessage(
   packageData: Package,
   formData: {
@@ -88,14 +49,39 @@ export function createBookingMessage(
     location: string;
   }
 ): string {
-  return createBaseMessage({
-    clientName: sanitizeInput(formData.name),
-    service: packageData.category,
-    package: packageData.name,
-    eventDate: formatShortDate(formData.event_date),
-    location: sanitizeInput(formData.location),
-    price: packageData.price,
-  });
+  const categoryLabels: Record<string, string> = {
+    "content-creator": "Content Creator",
+    organizer: "Wedding Organizer",
+    planner: "Wedding Planner",
+    "bride-assist": "Bride Assistant",
+    "add-on": "Add-On",
+  };
+
+  const serviceLabel = categoryLabels[packageData.category] || packageData.category;
+
+  return `━━━━━━━━━━━━━━━━━━━━━━
+*BOOKING REQUEST — ${COMPANY_NAME}*
+_Inquiry dari Client_
+━━━━━━━━━━━━━━━━━━━━━━
+
+Perkenalkan, saya ingin booking paket berikut:
+
+*Detail Pemesan:*
+━━━━━━━━━━━━━━━━━━━━━━
+👤 Nama: ${sanitizeInput(formData.name)}
+📱 No. HP: ${sanitizeInput(formData.phone)}
+━━━━━━━━━━━━━━━━━━━━━━
+
+*Detail Acara:*
+━━━━━━━━━━━━━━━━━━━━━━
+🎁 Paket: ${packageData.name}
+📂 Kategori: ${serviceLabel}
+💰 Estimasi Harga: ${formatCurrency(packageData.price)}
+📅 Tanggal: ${formatShortDate(formData.event_date)}
+📍 Lokasi: ${sanitizeInput(formData.location)}
+━━━━━━━━━━━━━━━━━━━━━━
+
+Mohon dapat divalidasi dan diinformasikan lebih lanjut mengenai paket ini. Terima kasih! 🙏`;
 }
 
 // General inquiry message
@@ -107,24 +93,21 @@ export function createInquiryMessage(
   }
 ): string {
   return `━━━━━━━━━━━━━━━━━━━━━━
-*${COMPANY_NAME}*
-_${COMPANY_TAGLINE}_
+*INQUIRY — ${COMPANY_NAME}*
+_From Client_
 ━━━━━━━━━━━━━━━━━━━━━━
 
-*Halo!* 👋
-
-Perkenalkan, nama saya *${sanitizeInput(formData.name)}*.
+Perkenalkan, saya *${sanitizeInput(formData.name)}*.
 
 *Pertanyaan saya:*
 ${sanitizeInput(formData.message)}
 
-Nomor saya: ${sanitizeInput(formData.phone)}
+*Detail Kontak:*
+━━━━━━━━━━━━━━━━━━━━━━
+📱 No. HP: ${sanitizeInput(formData.phone)}
+━━━━━━━━━━━━━━━━━━━━━━
 
-Terima kasih! 🙏
-
-Salam,
-${sanitizeInput(formData.name)}
-`;
+Mohon informasinya. Terima kasih! 🙏`;
 }
 
 // Travel inquiry message
@@ -144,13 +127,11 @@ export function createTravelInquiryMessage(
   };
 
   return `━━━━━━━━━━━━━━━━━━━━━━
-*${COMPANY_NAME} Travel*
-_${COMPANY_TAGLINE}_
+*TRAVEL INQUIRY — ${COMPANY_NAME}*
+_From Client_
 ━━━━━━━━━━━━━━━━━━━━━━
 
-*Halo!* 👋
-
-Perkenalkan, nama saya *${sanitizeInput(formData.name)}*.
+Perkenalkan, saya *${sanitizeInput(formData.name)}*.
 
 *Detail Permintaan:*
 ━━━━━━━━━━━━━━━━━━━━━━
@@ -159,13 +140,9 @@ ${formData.destination ? `🌍 Destinasi: ${sanitizeInput(formData.destination)}
 ${formData.message ? `\n💬 Pesan:\n${sanitizeInput(formData.message)}` : ""}
 ━━━━━━━━━━━━━━━━━━━━━━
 
-Nomor saya: ${sanitizeInput(formData.phone)}
+📱 No. HP: ${sanitizeInput(formData.phone)}
 
-Terima kasih! 🌍
-
-Salam,
-${sanitizeInput(formData.name)}
-`;
+Mohon infonya. Terima kasih! 🌍`;
 }
 
 // Booking confirmation message (for admin to send)

@@ -249,7 +249,7 @@ export function BookingModal({
                   <p className="text-gray-600 mb-4">
                     Pesanan Anda telah terkirim ke WhatsApp.
                     <br />
-                    Tim kami akan menghubungi Anda shortly.
+                    Tim kami akan menghubungi Anda dalam 1x24 jam.
                   </p>
 
                   <div className="bg-primary/5 rounded-2xl p-4 text-left text-sm mb-6">
