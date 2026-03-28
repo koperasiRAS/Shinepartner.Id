@@ -6,6 +6,12 @@ const nextConfig = {
       "lh3.googleusercontent.com", // Google avatars
       "images.unsplash.com",
     ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 60 * 60 * 24, // 24 hours
     // Image optimization settings

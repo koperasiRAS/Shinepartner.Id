@@ -3,30 +3,21 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import {
   ArrowLeft,
-  Play,
   Heart,
   Camera,
   MapPin,
   Calendar,
-  X,
-  Youtube,
-  Instagram,
+  ExternalLink,
 } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 
-const categories = [
-  { id: "all", label: "Semua" },
-  { id: "prewedding", label: "Prewedding" },
-  { id: "akad-resepsi", label: "Akad & Resepsi" },
-  { id: "engagement", label: "Engagement" },
-  { id: "celebration", label: "Celebration" },
-];
-
-// Portfolio items — ganti field `videoUrl` dengan URL video asli dari pasangan
+// NOTE: Place cover images in /public/portfolio-covers/
+// Naming: cover-01.jpg, cover-02.jpg, etc.
+// Replace the coverImage paths below with your custom images.
 const portfolioItems = [
   {
     id: 1,
@@ -34,11 +25,11 @@ const portfolioItems = [
     category: "akad-resepsi",
     location: "Jakarta",
     date: "Januari 2025",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
-    type: "video",
-    platform: "Instagram Reels",
-    // Replace with real video URL, e.g.: "https://www.youtube.com/embed/VIDEO_ID"
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    // Replace with: /portfolio-covers/cover-01.jpg
+    coverImage: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
+    platform: "TikTok",
+    // Replace with your TikTok video URL
+    videoUrl: "https://www.tiktok.com/@shinepartner/video/YOUR_VIDEO_ID",
   },
   {
     id: 2,
@@ -46,10 +37,9 @@ const portfolioItems = [
     category: "prewedding",
     location: "Bali",
     date: "Februari 2025",
-    image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80",
-    type: "video",
+    coverImage: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80",
     platform: "TikTok",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.tiktok.com/@shinepartner/video/YOUR_VIDEO_ID",
   },
   {
     id: 3,
@@ -57,10 +47,9 @@ const portfolioItems = [
     category: "engagement",
     location: "Bandung",
     date: "Maret 2025",
-    image: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80",
-    type: "video",
-    platform: "Instagram Reels",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    coverImage: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80",
+    platform: "TikTok",
+    videoUrl: "https://www.tiktok.com/@shinepartner/video/YOUR_VIDEO_ID",
   },
   {
     id: 4,
@@ -68,10 +57,9 @@ const portfolioItems = [
     category: "akad-resepsi",
     location: "Surabaya",
     date: "Maret 2025",
-    image: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80",
-    type: "video",
-    platform: "YouTube Shorts",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    coverImage: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80",
+    platform: "TikTok",
+    videoUrl: "https://www.tiktok.com/@shinepartner/video/YOUR_VIDEO_ID",
   },
   {
     id: 5,
@@ -79,10 +67,9 @@ const portfolioItems = [
     category: "prewedding",
     location: "Yogyakarta",
     date: "April 2025",
-    image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
-    type: "video",
-    platform: "Instagram Reels",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    coverImage: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
+    platform: "TikTok",
+    videoUrl: "https://www.tiktok.com/@shinepartner/video/YOUR_VIDEO_ID",
   },
   {
     id: 6,
@@ -90,10 +77,9 @@ const portfolioItems = [
     category: "celebration",
     location: "Jakarta",
     date: "April 2025",
-    image: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800&q=80",
-    type: "video",
+    coverImage: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800&q=80",
     platform: "TikTok",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.tiktok.com/@shinepartner/video/YOUR_VIDEO_ID",
   },
   {
     id: 7,
@@ -101,10 +87,9 @@ const portfolioItems = [
     category: "akad-resepsi",
     location: "Semarang",
     date: "Mei 2025",
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80",
-    type: "video",
-    platform: "Instagram Reels",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    coverImage: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80",
+    platform: "TikTok",
+    videoUrl: "https://www.tiktok.com/@shinepartner/video/YOUR_VIDEO_ID",
   },
   {
     id: 8,
@@ -112,10 +97,9 @@ const portfolioItems = [
     category: "prewedding",
     location: "Bogor",
     date: "Juni 2025",
-    image: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=80",
-    type: "video",
-    platform: "YouTube Shorts",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    coverImage: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=80",
+    platform: "TikTok",
+    videoUrl: "https://www.tiktok.com/@shinepartner/video/YOUR_VIDEO_ID",
   },
   {
     id: 9,
@@ -123,11 +107,18 @@ const portfolioItems = [
     category: "engagement",
     location: "Tangerang",
     date: "Juni 2025",
-    image: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=80",
-    type: "video",
-    platform: "Instagram Reels",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    coverImage: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=80",
+    platform: "TikTok",
+    videoUrl: "https://www.tiktok.com/@shinepartner/video/YOUR_VIDEO_ID",
   },
+];
+
+const categories = [
+  { id: "all", label: "Semua" },
+  { id: "prewedding", label: "Prewedding" },
+  { id: "akad-resepsi", label: "Akad & Resepsi" },
+  { id: "engagement", label: "Engagement" },
+  { id: "celebration", label: "Celebration" },
 ];
 
 const stats = [
@@ -139,93 +130,8 @@ const stats = [
 
 type PortfolioItem = (typeof portfolioItems)[0];
 
-function VideoModal({
-  item,
-  onClose,
-}: {
-  item: PortfolioItem;
-  onClose: () => void;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-    >
-      {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-black/90 backdrop-blur-sm"
-        onClick={onClose}
-      />
-
-      {/* Modal */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        transition={{ duration: 0.2 }}
-        className="relative w-full max-w-3xl z-10"
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h3 className="text-white font-heading font-bold text-xl">
-              {item.title}
-            </h3>
-            <div className="flex items-center gap-3 text-white/60 text-sm mt-1">
-              <span className="flex items-center gap-1">
-                <MapPin className="w-3 h-3" />
-                {item.location}
-              </span>
-              <span className="flex items-center gap-1">
-                <Calendar className="w-3 h-3" />
-                {item.date}
-              </span>
-              <span className="flex items-center gap-1">
-                {item.platform === "Instagram Reels" ? (
-                  <Instagram className="w-3 h-3" />
-                ) : (
-                  <Youtube className="w-3 h-3" />
-                )}
-                {item.platform}
-              </span>
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-2 bg-white/10 hover:bg-white/20 rounded-xl transition-colors"
-            aria-label="Tutup"
-          >
-            <X className="w-5 h-5 text-white" />
-          </button>
-        </div>
-
-        {/* Video Player */}
-        <div className="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
-          <iframe
-            src={`${item.videoUrl}?autoplay=1&rel=0`}
-            title={item.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 w-full h-full"
-          />
-        </div>
-
-        {/* Caption */}
-        <p className="text-white/50 text-sm text-center mt-4">
-          Demo video — ganti <code className="text-white/70">videoUrl</code> di{" "}
-          <code className="text-white/70">app/portfolio/page.tsx</code> dengan URL
-          video asli pasangan.
-        </p>
-      </motion.div>
-    </motion.div>
-  );
-}
-
 export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [selectedVideo, setSelectedVideo] = useState<PortfolioItem | null>(null);
 
   const filteredItems =
     activeCategory === "all"
@@ -240,16 +146,6 @@ export default function PortfolioPage() {
           { name: "Portfolio", url: "https://shinepartner.id/portfolio" },
         ]}
       />
-
-      {/* Video Modal */}
-      <AnimatePresence>
-        {selectedVideo && (
-          <VideoModal
-            item={selectedVideo}
-            onClose={() => setSelectedVideo(null)}
-          />
-        )}
-      </AnimatePresence>
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-primary">
@@ -278,7 +174,7 @@ export default function PortfolioPage() {
             </h1>
             <p className="text-white/70 text-lg max-w-2xl mx-auto leading-relaxed">
               Setiap pasangan punya cerita unik. Berikut beberapa momen yang telah
-              kami abadikan dalam bentuk video.
+              kami abadikan dalam bentuk video di TikTok.
             </p>
           </div>
         </div>
@@ -328,12 +224,15 @@ export default function PortfolioPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
             >
-              <div
-                className="group relative bg-gray-100 rounded-3xl overflow-hidden cursor-pointer aspect-[4/5]"
-                onClick={() => setSelectedVideo(item)}
+              <a
+                href={item.videoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex flex-col bg-gray-100 rounded-3xl overflow-hidden cursor-pointer aspect-[4/5]"
               >
+                {/* Cover Image — ganti dengan /portfolio-covers/cover-XX.jpg */}
                 <Image
-                  src={item.image}
+                  src={item.coverImage}
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -343,20 +242,30 @@ export default function PortfolioPage() {
                 {/* Dark overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                {/* Play Button */}
-                {item.type === "video" && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-accent/90 hover:bg-accent rounded-full flex items-center justify-center shadow-soft transition-transform duration-200 group-hover:scale-110">
-                      <Play className="w-6 h-6 text-primary ml-0.5" fill="currentColor" />
-                    </div>
+                {/* TikTok Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-black/60 backdrop-blur-sm hover:bg-black/70 rounded-full flex items-center justify-center shadow-soft transition-all duration-200 group-hover:scale-110">
+                    {/* TikTok icon */}
+                    <svg
+                      className="w-8 h-8 text-white ml-0.5"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.47 6.3 6.3 0 001.88-4.49V8.73a8.19 8.19 0 004.76 1.47v-3.4a4.85 4.85 0 01-1.06-.11z" />
+                    </svg>
                   </div>
-                )}
+                </div>
+
+                {/* Platform badge */}
+                <div className="absolute top-4 right-4">
+                  <span className="inline-flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium">
+                    <ExternalLink className="w-3 h-3" />
+                    TikTok
+                  </span>
+                </div>
 
                 {/* Info overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <span className="text-xs bg-accent/90 text-primary px-2.5 py-1 rounded-full font-medium inline-block mb-2">
-                    {item.platform}
-                  </span>
                   <h3 className="text-white font-heading font-bold text-lg">
                     {item.title}
                   </h3>
@@ -371,7 +280,7 @@ export default function PortfolioPage() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </a>
             </motion.div>
           ))}
         </div>

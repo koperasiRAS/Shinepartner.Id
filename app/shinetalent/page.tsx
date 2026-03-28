@@ -50,7 +50,7 @@ const focuses = [
   {
     icon: Users,
     title: "Talent Handling & Support",
-    desc: "Kami在旁边 — dari koordinasi jadwal, manajemen brand deal, sampai handle hal-hal administratif yang sering bikin kamu kewalahan.",
+    desc: "Kami siap di samping kamu — dari koordinasi jadwal, manajemen brand deal, sampai handle hal-hal administratif yang sering bikin kamu kewalahan.",
   },
   {
     icon: Target,

@@ -100,12 +100,6 @@ export default function Home() {
             </Button>
           </motion.div>
         </div>
-
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2">
-            <div className="w-1.5 h-3 bg-white/60 rounded-full" />
-          </div>
-        </div>
       </section>
 
       {/* ============================================ */}
@@ -563,7 +557,7 @@ export default function Home() {
               pkg: "WO Signature + Gold CC",
             },
             {
-              quote: "Kami pilih Shinepartner karena pendekatannya beda — mereka fokus bikin cerita kami yangunique, bukan template-video biasa.",
+              quote: "Kami pilih Shinepartner karena pendekatannya beda — mereka fokus bikin cerita kami yang unik, bukan template-video biasa.",
               name: "Fajar & Maya",
               role: "Bride & Groom, Surabaya",
               pkg: "Platinum Package",

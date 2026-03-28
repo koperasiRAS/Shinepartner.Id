@@ -157,21 +157,17 @@ export function Navbar({ onCartOpen }: NavbarProps) {
             <button
               onClick={scrollToTop}
               className={cn(
-                "flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-accent rounded-lg p-1",
+                "flex items-center focus:outline-none focus:ring-2 focus:ring-accent rounded-lg p-1",
                 textColorClass
               )}
               aria-label="Shinepartner - Kembali ke atas"
             >
-              <Image
-                src="/brand-logo.jpeg"
-                alt="ShinePartner.id"
-                width={44}
-                height={44}
-                className="rounded-xl object-contain"
-              />
-              <div className="hidden sm:block font-heading font-bold transition-colors">
+              <span className="hidden sm:block font-heading font-bold text-lg transition-colors">
                 ShinePartner.id
-              </div>
+              </span>
+              <span className="sm:hidden font-heading font-bold text-lg transition-colors">
+                ShinePartner
+              </span>
             </button>
 
             {/* Desktop Navigation */}

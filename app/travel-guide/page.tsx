@@ -44,8 +44,8 @@ const destinations = [
   {
     name: "Lombok",
     country: "Indonesia",
-    tagline: "Pantai eksotis dengan air yang jernih",
-    image: "https://images.unsplash.com/photo-1518544866330-4e716499f800?w=800&q=80",
+    tagline: "Pink Beach yang ikonik dengan pasir berwarna pink alami",
+    image: "https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?w=800&q=80",
     type: "Honeymoon & Elopement",
   },
   {
@@ -91,7 +91,7 @@ const includes = [
   "Tiket pesawat pulang-pergi (domestik)",
   "Akomodasi hotel / villa bintang 4-5",
   "Private transport selama di destinasi",
-  "Itinerary detalhado (daily plan)",
+  "Itinerary rinci (rencana harian)",
   "Dokumentasi foto & video (opsional add-on)",
   "Coordinate dengan vendor lokal",
   "Travel insurance",

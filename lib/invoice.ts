@@ -35,26 +35,46 @@ export async function generateInvoice(data: InvoiceData): Promise<Blob> {
   const margin = 20;
   let yPos = margin;
 
+  // Load brand logo
+  let logoDataUrl: string | null = null;
+  try {
+    const res = await fetch("/invoice-logo.jpeg");
+    const blob = await res.blob();
+    logoDataUrl = await new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  } catch {
+    // Logo not available, skip
+  }
+
   // Header Background
   doc.setFillColor(...COLORS.primary);
-  doc.rect(0, 0, pageWidth, 60, "F");
+  doc.rect(0, 0, pageWidth, logoDataUrl ? 52 : 60, "F");
+
+  // Brand Logo
+  if (logoDataUrl) {
+    doc.addImage(logoDataUrl, "JPEG", pageWidth / 2 - 8, 6, 16, 16);
+  }
 
   // Company Name
   doc.setTextColor(...COLORS.white);
   doc.setFontSize(28);
   doc.setFont("helvetica", "bold");
-  doc.text("SHINEPARTNER", pageWidth / 2, 25, { align: "center" });
+  doc.text("SHINEPARTNER", pageWidth / 2, logoDataUrl ? 30 : 25, { align: "center" });
 
   // Tagline
   doc.setFontSize(10);
   doc.setFont("helvetica", "normal");
-  doc.text("Your Wedding, Perfectly Managed", pageWidth / 2, 35, { align: "center" });
+  doc.text("Your Wedding, Perfectly Managed", pageWidth / 2, logoDataUrl ? 40 : 35, { align: "center" });
 
   // Website
   doc.setFontSize(9);
-  doc.text("shinepartner.id", pageWidth / 2, 45, { align: "center" });
+  doc.text("shinepartner.id", pageWidth / 2, logoDataUrl ? 50 : 45, { align: "center" });
 
-  yPos = 75;
+  yPos = logoDataUrl ? 65 : 75;
 
   // Invoice Title
   doc.setTextColor(...COLORS.primary);

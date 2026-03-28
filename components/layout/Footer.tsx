@@ -51,18 +51,10 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-3 mb-6">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/brand-logo.jpeg"
-                alt="ShinePartner.id"
-                className="w-14 h-14 rounded-xl object-contain"
-              />
-              <div>
-                <span className="font-heading font-bold text-xl text-white">
-                  ShinePartner.id
-                </span>
-              </div>
+            <div className="mb-6">
+              <span className="font-heading font-bold text-xl text-white">
+                ShinePartner.id
+              </span>
             </div>
             <p className="text-white/70 mb-6 leading-relaxed">
               Creative Partner untuk momen pernikahanmu.
