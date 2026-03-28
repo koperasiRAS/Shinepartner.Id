@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
-import { Navbar, Footer, WhatsAppButton } from "@/components/layout";
+import { Footer } from "@/components/layout";
 import {
   WebsiteStructuredData,
   LocalBusinessStructuredData,
   ServiceStructuredData,
+  FAQStructuredData,
 } from "@/components/SeoStructuredData";
+import { ClientLayout } from "@/components/layout/ClientLayout";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -27,11 +29,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://shinepartner.id"),
   title: {
-    default: "Shinepartner Ecosystem | Wedding Services & Travel",
+    default: "Shinepartner Ecosystem | Wedding Services, Travel & Talent",
     template: "%s | Shinepartner Ecosystem",
   },
   description:
-    "Shinepartner Ecosystem - Your premier wedding services partner offering wedding content creator, wedding planner, travel services, and more. Perfect wedding, perfectly managed.",
+    "Shinepartner Ecosystem — Your premier partner for wedding services, honeymoon travel, talent management, and blind date events. Shinepartner.id (wedding), Travel Guide (honeymoon & destination wedding), ShineTalent.co (KOL & content creator community), FindYourShine.id (blind date events).",
   keywords: [
     "wedding services",
     "wedding planner jakarta",
@@ -44,6 +46,14 @@ export const metadata: Metadata = {
     "pre-wedding",
     "wedding MC",
     "bride assistant",
+    "shinetalent",
+    "findyourshine",
+    "shinetalent management",
+    "content creator community",
+    "blind date jakarta",
+    "blind date event",
+    "destination wedding",
+    "honeymoon package indonesia",
   ],
   authors: [{ name: "Shinepartner" }],
   creator: "Shinepartner",
@@ -69,13 +79,13 @@ export const metadata: Metadata = {
       "Your premier wedding services partner offering wedding content creator, wedding planner, travel services, and more.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "Shinepartner Ecosystem - Wedding Services",
       },
       {
-        url: "/og-image-square.jpg",
+        url: "/og-image.svg",
         width: 1080,
         height: 1080,
         alt: "Shinepartner Wedding",
@@ -96,7 +106,7 @@ export const metadata: Metadata = {
     title: "Shinepartner Ecosystem | Wedding Services & Travel",
     description:
       "Your premier wedding services partner offering wedding content creator, wedding planner, travel services, and more.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.svg"],
   },
   robots: {
     index: true,
@@ -145,12 +155,11 @@ export default function RootLayout({
         <WebsiteStructuredData />
         <LocalBusinessStructuredData />
         <ServiceStructuredData />
+        <FAQStructuredData />
       </head>
       <body className="min-h-screen bg-white font-body antialiased">
-        <Navbar />
-        <main>{children}</main>
+        <ClientLayout>{children}</ClientLayout>
         <Footer />
-        <WhatsAppButton />
       </body>
     </html>
   );

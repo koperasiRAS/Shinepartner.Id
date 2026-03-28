@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, ChevronDown, ChevronUp, Clock, Camera } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Clock, Camera, ShoppingBag } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { formatCurrency } from "@/lib/utils";
+import { useCart } from "@/lib/cart-context";
 import type { Package } from "@/lib/data";
 
 interface PackageCardProps {
@@ -15,13 +16,18 @@ interface PackageCardProps {
 
 export function PackageCard({ pkg, onBook }: PackageCardProps) {
   const [showFeatures, setShowFeatures] = useState(false);
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    addItem(pkg);
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="relative"
+      className="relative flex flex-col h-full"
     >
       {pkg.recommended && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
@@ -33,7 +39,7 @@ export function PackageCard({ pkg, onBook }: PackageCardProps) {
 
       <Card
         variant={pkg.recommended ? "elevated" : "default"}
-        className={`h-full flex flex-col ${pkg.recommended ? "border-2 border-accent" : ""}`}
+        className={`flex flex-col h-full ${pkg.recommended ? "border-2 border-accent" : ""}`}
       >
         <CardHeader className="text-center pb-2">
           <CardTitle className="text-2xl">{pkg.name}</CardTitle>
@@ -54,7 +60,7 @@ export function PackageCard({ pkg, onBook }: PackageCardProps) {
           </p>
         </CardHeader>
 
-        <CardContent className="flex-1">
+        <CardContent className="flex-1 flex flex-col">
           <p className="text-gray-600 text-center mb-4">{pkg.description}</p>
 
           {/* Crew Info */}
@@ -74,7 +80,7 @@ export function PackageCard({ pkg, onBook }: PackageCardProps) {
             </div>
           )}
 
-          <div className="space-y-3">
+          <div className="space-y-3 flex-1">
             {pkg.features.slice(0, showFeatures ? undefined : 5).map((feature, index) => (
               <div key={index} className="flex items-start gap-3">
                 <div className="w-5 h-5 bg-accent/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -103,7 +109,7 @@ export function PackageCard({ pkg, onBook }: PackageCardProps) {
           )}
         </CardContent>
 
-        <CardFooter className="pt-4">
+        <CardFooter className="pt-4 flex-col gap-2">
           <Button
             variant={pkg.recommended ? "secondary" : "outline"}
             size="lg"
@@ -112,6 +118,13 @@ export function PackageCard({ pkg, onBook }: PackageCardProps) {
           >
             Book Now
           </Button>
+          <button
+            onClick={handleAddToCart}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 border-2 border-primary/10 text-primary/60 font-medium rounded-xl hover:bg-primary/5 hover:border-primary/20 transition-colors text-sm"
+          >
+            <ShoppingBag className="w-4 h-4" />
+            Tambah ke Keranjang
+          </button>
         </CardFooter>
       </Card>
     </motion.div>

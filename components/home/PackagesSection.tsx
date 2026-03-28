@@ -2,11 +2,20 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { PackageCard } from "./PackageCard";
-import { BookingModal } from "./BookingModal";
 import { Section, SectionHeader, SectionTitle, SectionSubtitle } from "@/components/ui/Section";
 import { packages } from "@/lib/data";
 import type { Package } from "@/lib/data";
+
+// Lazy-load BookingModal — only needed on interaction
+const BookingModal = dynamic(
+  () => import("./BookingModal").then((mod) => mod.BookingModal),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
 
 export function PackagesSection() {
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
