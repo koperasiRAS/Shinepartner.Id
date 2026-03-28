@@ -35,7 +35,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       .join("%0A");
 
     const message =
-      `━━━━━━━━━━━━━━━━━━━━━━%0A*BOOKING REQUEST — Shinepartner*%0A_Inquiry dari Client_%0A━━━━━━━━━━━━━━━━━━━━━━%0A%0ASaya ingin booking paket berikut:%0A%0A${itemsList}%0A%0A━━━━━━━━━━━━━━━━━━━━━━%0A📦 TOTAL: ${formatCurrency(totalPrice)}%0A━━━━━━━━━━━━━━━━━━━━━━%0A%0AMohon dapat divalidasi dan diinformasikan lebih lanjut. Terima kasih! 🙏`;
+      `Halo! Saya ingin booking paket berikut:%0A%0A${itemsList}%0A%0A📦 TOTAL: ${formatCurrency(totalPrice)}%0A%0AMohon dapat divalidasi dan diinformasikan lebih lanjut. Terima kasih! 🙏`;
 
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
     window.open(whatsappUrl, "_blank");

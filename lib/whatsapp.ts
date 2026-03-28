@@ -59,29 +59,17 @@ export function createBookingMessage(
 
   const serviceLabel = categoryLabels[packageData.category] || packageData.category;
 
-  return `━━━━━━━━━━━━━━━━━━━━━━
-*BOOKING REQUEST — ${COMPANY_NAME}*
-_Inquiry dari Client_
-━━━━━━━━━━━━━━━━━━━━━━
+  return `Halo! Perkenalkan nama saya ${sanitizeInput(formData.name)}, saya ingin booking paket berikut:
 
-Perkenalkan, saya ingin booking paket berikut:
-
-*Detail Pemesan:*
-━━━━━━━━━━━━━━━━━━━━━━
-👤 Nama: ${sanitizeInput(formData.name)}
-📱 No. HP: ${sanitizeInput(formData.phone)}
-━━━━━━━━━━━━━━━━━━━━━━
-
-*Detail Acara:*
-━━━━━━━━━━━━━━━━━━━━━━
 🎁 Paket: ${packageData.name}
 📂 Kategori: ${serviceLabel}
 💰 Estimasi Harga: ${formatCurrency(packageData.price)}
 📅 Tanggal: ${formatShortDate(formData.event_date)}
 📍 Lokasi: ${sanitizeInput(formData.location)}
-━━━━━━━━━━━━━━━━━━━━━━
 
-Mohon dapat divalidasi dan diinformasikan lebih lanjut mengenai paket ini. Terima kasih! 🙏`;
+No. HP saya: ${sanitizeInput(formData.phone)}
+
+Mohon dapat divalidasi dan diinformasikan lebih lanjut. Terima kasih! 🙏`;
 }
 
 // General inquiry message
@@ -92,20 +80,12 @@ export function createInquiryMessage(
     message: string;
   }
 ): string {
-  return `━━━━━━━━━━━━━━━━━━━━━━
-*INQUIRY — ${COMPANY_NAME}*
-_From Client_
-━━━━━━━━━━━━━━━━━━━━━━
+  return `Halo! Perkenalkan nama saya ${sanitizeInput(formData.name)}.
 
-Perkenalkan, saya *${sanitizeInput(formData.name)}*.
-
-*Pertanyaan saya:*
+Pertanyaan saya:
 ${sanitizeInput(formData.message)}
 
-*Detail Kontak:*
-━━━━━━━━━━━━━━━━━━━━━━
-📱 No. HP: ${sanitizeInput(formData.phone)}
-━━━━━━━━━━━━━━━━━━━━━━
+No. HP saya: ${sanitizeInput(formData.phone)}
 
 Mohon informasinya. Terima kasih! 🙏`;
 }
@@ -126,23 +106,14 @@ export function createTravelInquiryMessage(
     tour_guide: "Private Tour Guide",
   };
 
-  return `━━━━━━━━━━━━━━━━━━━━━━
-*TRAVEL INQUIRY — ${COMPANY_NAME}*
-_From Client_
-━━━━━━━━━━━━━━━━━━━━━━
+  let msg = `Halo! Perkenalkan nama saya ${sanitizeInput(formData.name)}.
 
-Perkenalkan, saya *${sanitizeInput(formData.name)}*.
+✈️ Jenis Layanan: ${travelTypes[formData.travelType] || formData.travelType}`;
+  if (formData.destination) msg += `\n🌍 Destinasi: ${sanitizeInput(formData.destination)}`;
+  if (formData.message) msg += `\n💬 Pesan: ${sanitizeInput(formData.message)}`;
+  msg += `\n\nNo. HP saya: ${sanitizeInput(formData.phone)}\n\nMohon infonya. Terima kasih! 🌍`;
 
-*Detail Permintaan:*
-━━━━━━━━━━━━━━━━━━━━━━
-✈️ Jenis Layanan: ${travelTypes[formData.travelType] || formData.travelType}
-${formData.destination ? `🌍 Destinasi: ${sanitizeInput(formData.destination)}` : ""}
-${formData.message ? `\n💬 Pesan:\n${sanitizeInput(formData.message)}` : ""}
-━━━━━━━━━━━━━━━━━━━━━━
-
-📱 No. HP: ${sanitizeInput(formData.phone)}
-
-Mohon infonya. Terima kasih! 🌍`;
+  return msg;
 }
 
 // Booking confirmation message (for admin to send)
