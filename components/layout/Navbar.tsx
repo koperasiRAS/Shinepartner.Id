@@ -163,11 +163,11 @@ export function Navbar({ onCartOpen }: NavbarProps) {
               aria-label="Shinepartner - Kembali ke atas"
             >
               <Image
-                src="/logo.png"
+                src="/brand-logo.jpeg"
                 alt="ShinePartner.id"
-                width={40}
-                height={40}
-                className="rounded-lg"
+                width={44}
+                height={44}
+                className="rounded-xl object-contain"
               />
               <div className="hidden sm:block font-heading font-bold transition-colors">
                 ShinePartner.id

@@ -260,7 +260,7 @@ export default function Home() {
               </CardContent>
               <div className="p-6 pt-0 mt-auto flex flex-col gap-2">
                 <Button
-                  variant={pkg.recommended ? "secondary" : "primary"}
+                  variant="primary"
                   size="lg"
                   className="w-full"
                   onClick={() => handleBook(pkg)}
@@ -316,7 +316,7 @@ export default function Home() {
               </CardContent>
               <div className="p-6 pt-0 mt-auto flex flex-col gap-2">
                 <Button
-                  variant={pkg.recommended ? "secondary" : "primary"}
+                  variant="primary"
                   size="lg"
                   className="w-full"
                   onClick={() => handleBook(pkg)}

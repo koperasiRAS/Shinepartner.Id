@@ -54,9 +54,9 @@ export function Footer() {
             <div className="flex items-center space-x-3 mb-6">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logo.png"
+                src="/brand-logo.jpeg"
                 alt="ShinePartner.id"
-                className="w-12 h-12 rounded-xl object-cover"
+                className="w-14 h-14 rounded-xl object-contain"
               />
               <div>
                 <span className="font-heading font-bold text-xl text-white">
