@@ -22,7 +22,7 @@ const portfolioItems = [
   {
     id: 1,
     title: "Syahrindra & Shobrina",
-    category: "Resepsi",
+    category: "Akad & Resepsi",
     location: "Banten",
     date: "oktober 2025",
     // Replace with: /portfolio-covers/cover-01.jpg
@@ -34,7 +34,7 @@ const portfolioItems = [
   {
     id: 2,
     title: "Dila & Fikri",
-    category: "Kirab",
+    category: "Akad & Resepsi",
     location: "Cigombong",
     date: "Februari 2025",
     coverImage: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80",
@@ -54,7 +54,7 @@ const portfolioItems = [
   {
     id: 4,
     title: "Ari & Adinda",
-    category: "akad &resepsi",
+    category: "Akad & Resepsi",
     location: "Jakarta",
     date: "Agustus 2025",
     coverImage: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80",
@@ -115,7 +115,7 @@ const portfolioItems = [
 
 const categories = [
   { id: "all", label: "Semua" },
-  { id: "prewedding", label: "Prewedding" },
+  { id: "mc", label: "MC" },
   { id: "akad-resepsi", label: "Akad & Resepsi" },
   { id: "engagement", label: "Engagement" },
   { id: "celebration", label: "Celebration" },

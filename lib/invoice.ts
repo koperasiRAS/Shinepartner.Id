@@ -252,12 +252,13 @@ export async function generateInvoice(data: InvoiceData): Promise<Blob> {
   doc.setTextColor(...COLORS.white);
   doc.setFontSize(10);
   doc.setFont("helvetica", "bold");
-  doc.text("Contact Us", pageWidth / 2, footerY, { align: "center" });
+  doc.text("Hubungi Kami", pageWidth / 2, footerY, { align: "center" });
 
   doc.setFontSize(9);
   doc.setFont("helvetica", "normal");
   doc.text("WhatsApp: +62 821 3801 6904", pageWidth / 2, footerY + 7, { align: "center" });
-  doc.text("Email: hello@shinepartner.id", pageWidth / 2, footerY + 14, { align: "center" });
+  doc.text("Instagram: @shinepartner.id", pageWidth / 2, footerY + 14, { align: "center" });
+  doc.text("TikTok: @shinepartner.id", pageWidth / 2, footerY + 21, { align: "center" });
 
   // Generate blob
   return doc.output("blob");
