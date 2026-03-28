@@ -22,7 +22,7 @@ const portfolioItems = [
   {
     id: 1,
     title: "Syahrindra & Shobrina",
-    category: "Akad & Resepsi",
+    category: "akad-resepsi",
     location: "Banten",
     date: "oktober 2025",
     // Replace with: /portfolio-covers/cover-01.jpg
@@ -34,7 +34,7 @@ const portfolioItems = [
   {
     id: 2,
     title: "Dila & Fikri",
-    category: "Akad & Resepsi",
+    category: "akad-resepsi",
     location: "Cigombong",
     date: "Februari 2025",
     coverImage: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80",
@@ -44,7 +44,7 @@ const portfolioItems = [
   {
     id: 3,
     title: "Adikus",
-    category: "MC",
+    category: "mc",
     location: "Bandung",
     date: "September 2025",
     coverImage: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80",
@@ -54,7 +54,7 @@ const portfolioItems = [
   {
     id: 4,
     title: "Ari & Adinda",
-    category: "Akad & Resepsi",
+    category: "akad-resepsi",
     location: "Jakarta",
     date: "Agustus 2025",
     coverImage: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80",
@@ -64,7 +64,7 @@ const portfolioItems = [
   {
     id: 5,
     title: "Aji & Ali",
-    category: "Resepsi",
+    category: "akad-resepsi",
     location: "bandung",
     date: "Desember 2025",
     coverImage: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
@@ -74,7 +74,7 @@ const portfolioItems = [
   {
     id: 6,
     title: "Teti & Anyar",
-    category: "Akad & Resepsi",
+    category: "akad-resepsi",
     location: "Jakarta",
     date: "Maret 2026",
     coverImage: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=800&q=80",
@@ -84,7 +84,7 @@ const portfolioItems = [
   {
     id: 7,
     title: "Anisa & Dimas",
-    category: "akad &resepsi",
+    category: "akad-resepsi",
     location: "Semarang",
     date: "Mei 2025",
     coverImage: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80",
