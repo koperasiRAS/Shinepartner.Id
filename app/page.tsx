@@ -116,7 +116,7 @@ export default function Home() {
             <strong className="text-accent">cahaya</strong> dan <strong className="text-accent">rasa</strong>.
           </p>
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed mt-4">
-            Dari detik-detik haru menjelang akad hingga tawa lepas saat pesta —
+            Dari detik-detik haru menjelang akad hingga tawa lepas saat pesta,
             <br />
             kami percaya setiap momen layak untuk <strong className="text-primary">bersinar</strong> dan{" "}
             <strong className="text-primary">abadi</strong>.
@@ -557,7 +557,7 @@ export default function Home() {
               pkg: "WO Signature + Gold CC",
             },
             {
-              quote: "Kami pilih Shinepartner karena pendekatannya beda — mereka fokus bikin cerita kami yang unik, bukan template-video biasa.",
+              quote: "Kami pilih Shinepartner karena pendekatannya beda, mereka fokus bikin cerita kami yang unik, bukan template-video biasa.",
               name: "Fajar & Maya",
               role: "Bride & Groom, Surabaya",
               pkg: "Platinum Package",

@@ -24,7 +24,7 @@ const platformLogos = [
     name: "Instagram",
     icon: Instagram,
     color: "from-purple-500 to-pink-500",
-    followers: "Nano to Growing",
+    followers: "Tingkat Nano hingga Growing",
   },
   {
     name: "TikTok",
@@ -50,7 +50,7 @@ const focuses = [
   {
     icon: Users,
     title: "Talent Handling & Support",
-    desc: "Kami siap di samping kamu — dari koordinasi jadwal, manajemen brand deal, sampai handle hal-hal administratif yang sering bikin kamu kewalahan.",
+    desc: "Kami siap di samping kamu, dari koordinasi jadwal, manajemen kerja sama brand, sampai handle hal-hal administratif yang sering bikin kamu kewalahan.",
   },
   {
     icon: Target,
@@ -59,16 +59,16 @@ const focuses = [
   },
   {
     icon: TrendingUp,
-    title: "Personal Growth as a Creator",
-    desc: "Bukan soal viral atau trending. Ini tentang growth yang genuine — skill, confidence, dan karisma kamu sebagai talent.",
+    title: "Pertumbuhan Personal sebagai Creator",
+    desc: "Bukan soal viral atau trending. Ini tentang pertumbuhan yang genuine, skill, rasa percaya diri, dan karisma kamu sebagai talent.",
   },
 ];
 
 const principles = [
-  "Creator dari nano sampai growing level tetap berhak mendapatkan guidance, bukan pressure.",
-  "Ini bukan tentang Mengejar brand — ini tentang membangun talent first.",
-  "Setiap creator punya pace masing-masing. Kami respek itu.",
-  "Community-driven: saling belajar, saling grow bareng.",
+  "Creator dari nano sampai level berkembang tetap berhak mendapatkan bimbingan, bukan tekanan.",
+  "Ini bukan tentang Mengejar kerja sama brand, ini tentang membangun talent terlebih dahulu.",
+  "Setiap creator punya ritmenya masing-masing. Kami respek itu.",
+  "Community-driven: saling belajar, saling bertumbuh bersama.",
 ];
 
 export default function ShineTalentPage() {
@@ -139,16 +139,16 @@ export default function ShineTalentPage() {
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed mb-6">
             Shine Talent Management hadir sebagai forum dan link untuk
-            creator — <strong className="text-primary">tempat untuk saling
+            creator, <strong className="text-primary">tempat untuk saling
             belajar, berkembang, dan punya arah yang lebih jelas sebagai talent.</strong>
           </p>
           <p className="text-gray-600 text-lg leading-relaxed">
             Kami percaya, creator dari{" "}
             <strong className="text-primary">nano</strong> sampai{" "}
-            <strong className="text-primary">growing level</strong> tetap
+            <strong className="text-primary">level berkembang</strong> tetap
             berhak mendapatkan{" "}
-            <strong className="text-accent">guidance</strong>, bukan
-            pressure.
+            <strong className="text-accent">bimbingan</strong>, bukan
+            tekanan.
           </p>
         </div>
       </Section>
@@ -158,7 +158,7 @@ export default function ShineTalentPage() {
         <SectionHeader>
           <SectionTitle>Beragam Platform, Satu Komunitas</SectionTitle>
           <SectionSubtitle>
-            Tidak peduli kamu aktif di mana — kami support kamu di semua platform
+            Tidak peduli kamu aktif di mana, kami support kamu di semua platform
           </SectionSubtitle>
         </SectionHeader>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -216,13 +216,13 @@ export default function ShineTalentPage() {
           <div className="max-w-3xl mx-auto text-center text-white">
             <Sparkles className="w-12 h-12 text-accent mx-auto mb-6" />
             <blockquote className="text-2xl md:text-3xl font-heading font-bold leading-relaxed mb-4">
-              &ldquo;This is not about chasing brands —
+              &ldquo;Ini bukan tentang Mengejar kerja sama brand,
               <br />
-              this is about{" "}
-              <span className="text-accent">building the talent first</span>.&rdquo;
+              ini tentang{" "}
+              <span className="text-accent">membangun talent terlebih dahulu</span>.&rdquo;
             </blockquote>
             <p className="text-white/60 text-lg">
-              — Prinsip utama Shine Talent Management
+              Prinsip utama Shine Talent Management
             </p>
           </div>
         </div>

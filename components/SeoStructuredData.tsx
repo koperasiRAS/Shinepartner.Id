@@ -90,7 +90,7 @@ export const faqData = [
     a: "Shinepartner.id fokus di wedding services (content creator, WO, WP). Blind Date, Travel, dan Talent adalah brand ekosistem kami yang bergerak di bidang masing-masing.",
   },
   {
-    q: "Bagaimana联系 brand ekosistem lainnya?",
+    q: "Bagaimana menghubungi brand ekosistem lainnya?",
     a: "Silakan hubungi kami via WhatsApp untuk informasi brand ekosistem kami: FindYourShine.id, ShineTalent.co, dan layanan travel.",
   },
 ];

@@ -98,9 +98,9 @@ export function TestimonialsSection() {
   return (
     <Section id="testimonials" variant="accent">
       <SectionHeader>
-        <SectionTitle>What Our Couples Say</SectionTitle>
+        <SectionTitle>Kata Pasangan Kami</SectionTitle>
         <SectionSubtitle>
-          Real stories from real couples who trusted us with their special day
+          Cerita nyata dari pasangan yang mempercayakan hari spesial mereka kepada kami
         </SectionSubtitle>
       </SectionHeader>
 

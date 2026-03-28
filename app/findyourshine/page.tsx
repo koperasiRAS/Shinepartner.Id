@@ -23,7 +23,7 @@ const howItWorks = [
   {
     step: "01",
     title: "Registrasi & Isi Form",
-    desc: "Daftar melalui form kami dan isi informasi singkat tentang dirimu — minat, hobi, ekspektasi, dan kriteria yang kamu cari.",
+    desc: "Daftar melalui form kami dan isi informasi singkat tentang dirimu, minat, hobi, ekspektasi, dan kriteria yang kamu cari.",
   },
   {
     step: "02",
@@ -91,11 +91,11 @@ const faqs = [
   },
   {
     q: "Bagaimana proses matching-nya?",
-    a: "Kami melakukan matching berdasarkan data yang kamu isi saat registrasi — minat, hobi, ekspektasi, dan preferensi. Matching dilakukan oleh tim kami secara manual.",
+    a: "Kami melakukan matching berdasarkan data yang kamu isi saat registrasi, minat, hobi, ekspektasi, dan preferensi. Matching dilakukan oleh tim kami secara manual.",
   },
   {
     q: "Apakah identitas peserta dijaga kerahasiaannya?",
-    a: "Ya! Identitas peserta dijaga sebelum dan selama event. Partner kamu akan di-reveal setelah kamu tiba di venue.",
+    a: "Ya! Identitas peserta dijaga sebelum dan selama event. Partner kamu akan diketahui setelah kamu tiba di venue.",
   },
   {
     q: "Berapa usia minimal untuk ikut?",
@@ -103,7 +103,7 @@ const faqs = [
   },
   {
     q: "Bagaimana jika tidak ada chemistry dengan partner saya?",
-    a: "Tidak masalah! Ini adalah pengalaman — datang, coba, dan nikmati prosesnya. Kami akan usahakan pengalaman terbaik untukmu.",
+    a: "Tidak masalah! Ini adalah pengalaman, datang, coba, dan nikmati prosesnya. Kami akan usahakan pengalaman terbaik untukmu.",
   },
   {
     q: "Apakah ada jaminan kecocokan?",
@@ -207,14 +207,14 @@ export default function FindYourShinePage() {
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed mb-6">
             FindYourShine.id adalah event blind date yang dirancang untuk
-            menjadi ruang aman bertemu orang baru — tanpa swipe, tanpa fake
-            profile, tanpa awkwardness.
+            menjadi ruang aman bertemu orang baru, tanpa swipe, tanpa profil
+            palsu, tanpa kecanggungan.
           </p>
           <p className="text-gray-600 text-lg leading-relaxed">
             Datang dengan autentik, ketemu dengan cara yang seru, dan lihat
             apakah{" "}
             <strong className="text-sky-600">chemistry terjadi secara
-            natural</strong>.
+            alami</strong>.
           </p>
         </div>
       </Section>
@@ -224,7 +224,7 @@ export default function FindYourShinePage() {
         <SectionHeader>
           <SectionTitle>Bagaimana Caramu Bekerja</SectionTitle>
           <SectionSubtitle>
-            Dari registrasi sampai menemukan partner — prosessnya seru dan transparan
+            Dari registrasi sampai menemukan partner, prosessnya seru dan transparan
           </SectionSubtitle>
         </SectionHeader>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -292,7 +292,7 @@ export default function FindYourShinePage() {
         <SectionHeader>
           <SectionTitle>Event Berikutnya</SectionTitle>
           <SectionSubtitle>
-            Jangan sampai ketinggalan — slot terbatas!
+            Jangan sampai ketinggalan, slot terbatas!
           </SectionSubtitle>
         </SectionHeader>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -470,7 +470,7 @@ export default function FindYourShinePage() {
             Siap Menemukan Shine-mu?
           </h2>
           <p className="text-white/70 mb-8">
-            Jangan tunggu lebih lama — event blind date berikutnya mungkin adalah
+            Jangan tunggu lebih lama, event blind date berikutnya mungkin adalah
             awal dari cerita terbaikmu.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -68,7 +68,7 @@ const services = [
   {
     icon: Plane,
     title: "Honeymoon Package",
-    desc: "Paket lengkap honeymoon ke destinasi impian — transportasi, akomodasi, dan itinerary yang sudah dirancang khusus untuk couples.",
+    desc: "Paket lengkap honeymoon ke destinasi impian, transportasi, akomodasi, dan itinerary yang sudah dirancang khusus untuk couples.",
   },
   {
     icon: Camera,
@@ -78,12 +78,12 @@ const services = [
   {
     icon: Heart,
     title: "Destination Wedding",
-    desc: "Pernikahan di destinasi impian — dari intimate beach wedding hingga romantis garden ceremony di villa pribadi.",
+    desc: "Pernikahan di destinasi impian, dari intimate beach wedding hingga romantis garden ceremony di villa pribadi.",
   },
   {
     icon: Palmtree,
     title: "Elopement Package",
-    desc: "Untuk couples yang ingin pernikahan kecil-kecilan tapi berkesan — intimate ceremony dengan all-in service.",
+    desc: "Untuk couples yang ingin pernikahan kecil-kecilan tapi berkesan, intimate ceremony dengan all-in service.",
   },
 ];
 
@@ -150,8 +150,8 @@ export default function TravelGuidePage() {
               <span className="text-accent">by Shinepartner.id</span>
             </h1>
             <p className="text-white/70 text-lg max-w-2xl mx-auto leading-relaxed mb-4">
-              Honeymoon, destination wedding, dan prewedding di destinasi impian
-              — semua diatur dengan sempurna.
+              Honeymoon, destination wedding, dan prewedding di destinasi impian,
+              semua diatur dengan sempurna.
             </p>
             <p className="text-white/50 text-base max-w-2xl mx-auto leading-relaxed">
               Dari Bali yang romantis sampai Raja Ampat yang eksotis.
@@ -174,11 +174,11 @@ export default function TravelGuidePage() {
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed mb-6">
             Kami percaya bulan madu dan pernikahan destinasi seharusnya jadi
-            momen paling berkesan — bukan yang paling bikin stress.
+            momen paling berkesan, bukan yang paling bikin stress.
           </p>
           <p className="text-gray-600 text-lg leading-relaxed">
             Tim kami menyediakan <strong className="text-primary">end-to-end
-            travel service</strong> — dari bantuan pilih destinasi, booking
+            travel service</strong>, dari bantuan pilih destinasi, booking
             akomodasi terbaik, sampai koordinasi vendor lokal di lokasi.
           </p>
         </div>
@@ -221,7 +221,7 @@ export default function TravelGuidePage() {
         <SectionHeader>
           <SectionTitle>Yang Termasuk</SectionTitle>
           <SectionSubtitle>
-            Semua paket sudah termasuk kebutuhan essentials — kamu tinggal enjoy
+            Semua paket sudah termasuk kebutuhan essentials, kamu tinggal enjoy
           </SectionSubtitle>
         </SectionHeader>
         <div className="max-w-2xl mx-auto grid sm:grid-cols-2 gap-4">
